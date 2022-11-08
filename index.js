@@ -22,11 +22,12 @@ const storage = multer.diskStorage({
 })
 
 const uploadImage = multer({storage : storage})
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("/api/upload", uploadImage.single("file"), (req, res) => {
     res.status(200).json("file uploaded")
 })
 
 app.use(express.json())
+app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use("/api", productsRoute)
 
 app.listen(5000, () => {
