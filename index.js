@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const productsRoute = require("./routes/products")
 const multer = require("multer")
+const path = require('path')
 
 dotenv.config()
 
