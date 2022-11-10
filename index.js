@@ -5,6 +5,7 @@ const dotenv = require("dotenv")
 const productsRoute = require("./routes/products")
 const multer = require("multer")
 const path = require('path')
+const authRoute = require("./routes/auth")
 
 dotenv.config()
 
@@ -30,6 +31,7 @@ app.post("/api/upload", uploadImage.single("file"), (req, res) => {
 app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use("/api", productsRoute)
+app.use("/api", authRoute)
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("OK");
