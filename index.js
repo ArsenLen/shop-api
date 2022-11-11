@@ -6,6 +6,7 @@ const productsRoute = require("./routes/products")
 const multer = require("multer")
 const path = require('path')
 const authRoute = require("./routes/auth")
+const cors = require("cors")
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ app.post("/api/upload", uploadImage.single("file"), (req, res) => {
     res.status(200).json("file uploaded")
 })
 
+app.use(cors())
 app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use("/api", productsRoute)
