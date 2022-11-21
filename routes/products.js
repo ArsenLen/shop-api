@@ -41,4 +41,13 @@ router.get("/product/:id", async (req, res) => {
     }
 })
 
+router.delete("/product/:id", async (req, res) =>{
+    try {
+        await Product.findByIdAndDelete(req.body.id)
+        res.status(200).json("Успешно удален")
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
 module.exports = router
