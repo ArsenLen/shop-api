@@ -16,6 +16,8 @@ mongoose
     .then(() => console.log("connected"))
     .catch(err => console.log(err))
 
+app.use(cors())
+app.use(express.json())
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "images")
@@ -29,9 +31,6 @@ const uploadImage = multer({storage : storage})
 app.post("/api/upload", uploadImage.single("file"), (req, res) => {
     res.status(200).json("file uploaded")
 })
-
-app.use(cors())
-app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use("/api", productsRoute)
 app.use("/api", authRoute)
