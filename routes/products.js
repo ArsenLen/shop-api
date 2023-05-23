@@ -40,6 +40,27 @@ router.get("/product/:id", async (req, res) => {
     }
 })
 
+//UPDATE POST
+router.patch("/:id", async (req, res) => {
+    try {
+      const post = await Product.findById(req.params.id);
+        try {
+          const updatedPost = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+              $set: req.body,
+            },
+            { new: true }
+          );
+          res.status(200).json(updatedPost);
+        } catch (err) {
+          res.status(500).json(err);
+        }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
 router.delete("/product/:id", async (req, res) =>{
     try {
         await Product.findByIdAndDelete(req.body.id)
