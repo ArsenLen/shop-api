@@ -63,7 +63,8 @@ router.patch("product/:id", async (req, res) => {
   
 router.delete("/product/:id", async (req, res) =>{
     try {
-        await Product.findByIdAndDelete(req.body.id)
+        console.log(req.body.id)
+        await Product.findByIdAndDelete(req.params.id)
         res.status(200).json("Успешно удален")
     } catch (err) {
         res.status(500).json(err)
