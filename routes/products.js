@@ -41,7 +41,7 @@ router.get("/product/:id", async (req, res) => {
 })
 
 //UPDATE POST
-router.patch("product/:id", async (req, res) => {
+router.patch("/product/:id", async (req, res) => {
     try {
       const post = await Product.findById(req.params.id);
         try {
