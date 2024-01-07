@@ -32,7 +32,7 @@ app.post("/api/upload", uploadImage.single("file"), (req, res) => {
     res.status(200).json("file uploaded")
 })
 app.use('/images', express.static(path.join(__dirname, 'images')))
-app.use("/api", productsRoute)
+app.use("/", productsRoute)
 app.use("/api", authRoute)
 
 // app.post('/api/pay', async (req, res) => {
